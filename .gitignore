@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+coverage.json
+junit.xml
+reports/
+node_modules/
+.venv/
+venv/
+# Evidence binaries are regenerable by tools/; the committed SVG and the
+# small GIF are kept, the scratch webm is not.
+docs/video/*.webm

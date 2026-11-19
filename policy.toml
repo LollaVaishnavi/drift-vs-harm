@@ -1,0 +1,59 @@
+# Monitoring policy for drift-vs-harm.
+#
+# Every threshold here is an arbitrary operating choice, not a fact about the
+# world. They live in this file, with a comment on why each value was picked,
+# precisely because the central finding of the repository is that the alarm a
+# threshold produces does not line up with harm. Changing a number here changes
+# which scenarios "alarm" but cannot change the structural result, because a
+# detector that never sees a label cannot be tuned into seeing one.
+
+[drift]
+# Population Stability Index alarm level. 0.2 is the common industry rule of
+# thumb for "significant population shift, investigate". 0.1 is "minor shift".
+# We alarm at the stricter-to-the-detector 0.2 so the detector is given its
+# best chance to be useful before we judge it.
+psi_alarm = 0.2
+
+# Number of bins for PSI, and the binning strategy. "quantile" freezes bin
+# edges on the reference window so each reference bin holds ~equal mass;
+# "equal_width" splits the reference range into equal intervals. ADR-005
+# records why the default is quantile: equal_width lets an arbitrary tail move
+# flip the alarm. Both are implemented so the sensitivity is measurable.
+psi_bins = 10
+psi_binning = "quantile"
+
+# Kolmogorov-Smirnov two-sample test significance. A detector "alarms" when the
+# p-value falls below this, i.e. the production sample is distinguishable from
+# the reference sample at this level. 0.05 is the textbook default.
+ks_alpha = 0.05
+
+# Jensen-Shannon divergence alarm level, in bits (log base 2, so the range is
+# 0 to 1). 0.1 bits is a small but visible distributional gap.
+js_alarm = 0.1
+
+# Which signals the monitor watches. "features" drifts each input column;
+# "score" drifts the model's output probability. The generous reading used for
+# the headline is: alarm if ANY watched signal on ANY column fires.
+watch = ["features", "score"]
+
+[harm]
+# Harm is a drop in ranking quality on labeled production data. A model "harmed"
+# when its AUC falls by at least this much versus the reference holdout. 0.02 is
+# a deliberately modest bar: the point is not to detect huge failures, it is to
+# show the detector misses even clearly measurable ones.
+auc_drop_alarm = 0.02
+
+# Labeled production sample size used to measure harm. Kept large on purpose so
+# the AUC estimate is well resolved and harm detection is not the hard part:
+# the hard part is that the drift detector never gets to see these labels.
+# See docs/adr/ADR-003 for why harm is kept robust and not the subject.
+label_sample = 4000
+
+[run]
+# Master seed. Every scenario derives a child seed from this, so the whole
+# suite is byte-identical across runs and machines.
+seed = 20260211
+
+# Reference and production window sizes for the unlabeled signals.
+reference_window = 4000
+production_window = 4000
