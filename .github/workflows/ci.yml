@@ -1,0 +1,79 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Install the core package and the test extra only. The evidence extra
+      # (playwright, cmarkgfm) is deliberately not installed, so this job proves the
+      # library imports and runs with none of it present.
+      - name: Install (no evidence extras)
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[test]"
+          python -m pip install ruff
+
+      # A broken import of an optional dependency would surface here, before any test
+      # has a chance to mask it with a heavy install.
+      - name: Import without evidence extras
+        run: |
+          python -c "import driftharm, driftharm.cli, driftharm.harness, driftharm.report"
+          python -m driftharm.cli audit --family null >/dev/null
+
+      - name: Lint
+        run: ruff check src tests experiments tools
+
+      # Tests are their own step, writing machine-readable reports the later steps
+      # read. A red test here is a test failure, not a confusing CalledProcessError
+      # from inside the metrics collector.
+      - name: Test
+        run: |
+          python -m pytest tests \
+            --junitxml=reports/junit.xml \
+            --cov=driftharm \
+            --cov-report=json:reports/coverage.json \
+            --cov-report=term-missing
+
+      - name: Coverage floor
+        run: python tools/check_coverage.py reports/coverage.json 100
+
+      - name: Re-run experiments
+        run: make experiments
+
+      # Receipts read the reports from the Test step (hence --skip-tests inside the
+      # collector) and fail the build if any document drifted from the measured number.
+      - name: Receipts
+        run: |
+          python tools/collect_metrics.py --skip-tests
+          python tools/check_numbers.py
+
+      - name: Write the awkward table to the job summary
+        if: always()
+        run: python tools/ci_summary.py >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload experiment JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: experiments-py${{ matrix.python-version }}
+          path: docs/experiments/*.json
