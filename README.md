@@ -2,7 +2,7 @@
 
 **A labelled replay harness that answers whether a population-drift alarm actually predicts model harm, by scoring drift detectors (PSI, KS, Jensen-Shannon) against the AUC loss a frozen model really suffered. On the scenarios where only the labelling rule moves, PSI fires on 0 of 15 degradations while AUC falls 0.30.**
 
-![tests](https://img.shields.io/badge/tests-99%20passing-brightgreen)
+![tests](https://img.shields.io/badge/tests-104%20passing-brightgreen)
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 ![python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
@@ -42,7 +42,7 @@ re-measured by CI on each run:
 - Nearly 70% of realised harm (16 of 23 harmed scenarios) is invisible to PSI until
   the labels come in.
 
-This is a repository built on 99 tests at 100% line coverage, and the number checker
+This is a repository built on 104 tests at 100% line coverage, and the number checker
 in CI fails the build if any figure above drifts from the code that produced it.
 
 ## Quickstart
@@ -132,14 +132,14 @@ discipline the whole claim rests on.
 
 ```mermaid-source
 flowchart LR
-  G[seeded generator<br/>known true cause] --> W[production window]
-  W --> D[label-blind path<br/>PSI / KS / JS<br/>on features and score]
-  W --> H[labelled path<br/>AUC / log loss / ECE]
-  B[frozen reference<br/>model and windows] --> D
+  G[seeded generator: known true cause] --> W[production window]
+  W --> D[label-blind path: PSI / KS / JS on features and score]
+  W --> H[labelled path: AUC / log loss / ECE]
+  B[frozen reference model and windows] --> D
   B --> H
-  D --> C{confusion matrix<br/>alarm vs harm}
+  D --> C{confusion matrix: alarm vs harm}
   H --> C
-  C --> R[precision, recall,<br/>silent-failure share]
+  C --> R[precision, recall, silent-failure share]
 ```
 
 ## Evidence
@@ -188,7 +188,7 @@ This is the most important section, and it is not a footnote.
 
 ```text
 src/driftharm/     generator, model, drift, harm, scenarios, harness, confusion, report, cli
-tests/             99 property-named tests, 100% line coverage
+tests/             104 property-named tests, 100% line coverage
 experiments/       exp01..exp05, each answering one question above
 tools/             collect_metrics, check_numbers, check_coverage, and the evidence tools
 docs/adr/          five decisions, including the two boundary ADRs

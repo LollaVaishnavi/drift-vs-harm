@@ -21,7 +21,7 @@ import sys
 
 from driftharm import __version__
 from driftharm.config import load_policy
-from driftharm.report import render_json, render_summary, render_table
+from driftharm.report import render_html, render_json, render_summary, render_table
 from driftharm.scenarios import default_suite, suite_by_family
 
 EXIT_TRACKED = 0
@@ -51,8 +51,13 @@ def _build_parser() -> argparse.ArgumentParser:
     audit.add_argument(
         "--format",
         default="table",
-        choices=["table", "json"],
-        help="table for humans, json for the receipts tooling",
+        choices=["table", "json", "html"],
+        help="table for humans, json for the receipts tooling, html for the report",
+    )
+    audit.add_argument(
+        "--quiet",
+        action="store_true",
+        help="print only the summary, not the per-scenario table (table format only)",
     )
     return parser
 
@@ -67,7 +72,9 @@ def audit_exit_code(outcomes) -> int:
     return EXIT_TRACKED
 
 
-def run_audit(policy_path: str | None, family: str, output_format: str, stream) -> int:
+def run_audit(
+    policy_path: str | None, family: str, output_format: str, stream, quiet: bool = False
+) -> int:
     policy = load_policy(policy_path)
     specs = default_suite()
     if family != "all":
@@ -79,8 +86,11 @@ def run_audit(policy_path: str | None, family: str, output_format: str, stream) 
 
     if output_format == "json":
         print(render_json(outcomes), file=stream)
+    elif output_format == "html":
+        print(render_html(outcomes), file=stream)
     else:
-        print(render_table(outcomes), file=stream)
+        if not quiet:
+            print(render_table(outcomes), file=stream)
         print(render_summary(outcomes), file=stream)
 
     return audit_exit_code(outcomes)
@@ -94,7 +104,7 @@ def main(argv: list[str] | None = None, stream=None) -> int:
         parser.print_help(stream)
         return EXIT_TRACKED
     if args.command == "audit":
-        return run_audit(args.policy, args.family, args.format, stream)
+        return run_audit(args.policy, args.family, args.format, stream, args.quiet)
     parser.print_help(stream)  # pragma: no cover - argparse rejects unknown commands first
     return EXIT_TRACKED  # pragma: no cover
 

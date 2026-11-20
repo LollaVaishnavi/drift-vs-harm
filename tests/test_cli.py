@@ -72,6 +72,24 @@ def test_audit_json_format_is_machine_readable():
     assert payload["summary"]["concept_psi_recall"] == 0.0
 
 
+def test_audit_quiet_prints_summary_without_the_table():
+    stream = io.StringIO()
+    code = main(["audit", "--family", "concept", "--quiet"], stream=stream)
+    out = stream.getvalue()
+    assert code == EXIT_SILENT_FAILURE
+    assert "PSI recall on concept drift" in out  # summary present
+    assert "concept-f0-d-2.5" not in out  # no per-scenario table row
+
+
+def test_audit_html_format_emits_a_document():
+    stream = io.StringIO()
+    code = main(["audit", "--family", "concept", "--format", "html"], stream=stream)
+    out = stream.getvalue()
+    assert code == EXIT_SILENT_FAILURE
+    assert out.startswith("<!DOCTYPE html>")
+    assert "verdict" in out
+
+
 def test_audit_accepts_an_explicit_policy_path():
     from driftharm.config import DEFAULT_POLICY_PATH
 

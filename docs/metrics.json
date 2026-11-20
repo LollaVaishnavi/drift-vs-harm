@@ -115,7 +115,7 @@
     "silent_harm_count": 16,
     "silent_harm_share_pct": 69.57,
     "spearman_across_mix": -0.151,
-    "tests_total": 99,
+    "tests_total": 104,
     "war_psi_equal_width": 0.2248,
     "war_psi_quantile": 0.142,
     "worst_silent_auc_drop": 0.2997
@@ -195,7 +195,7 @@
       "correlation of -0.15"
     ],
     "tests_total": [
-      "99 tests"
+      "104 tests"
     ],
     "war_psi_equal_width": [
       "0.22 under equal-width",
