@@ -1,0 +1,6 @@
+{
+  "concept_auc_drop_spread": 0.2228,
+  "concept_psi_spread": 0.0068,
+  "spearman_across_mix": -0.151,
+  "spearman_within_harmed": -0.197
+}

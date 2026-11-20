@@ -1,0 +1,10 @@
+{
+  "harmed_scenarios": 23,
+  "psi_silent_harm": 16,
+  "psi_visible_harm": 7,
+  "silent_harm_by_family": {
+    "concept": 15,
+    "mixed": 1
+  },
+  "silent_harm_share_pct": 69.57
+}

@@ -1,0 +1,10 @@
+{
+  "concept_generous_recall_pct": 20.0,
+  "concept_harmed": 15,
+  "concept_js_recall_pct": 0.0,
+  "concept_psi_recall_pct": 0.0,
+  "concept_scenarios": 15,
+  "min_silent_auc_drop": 0.0769,
+  "resolution_floor_pct": 6.67,
+  "worst_silent_auc_drop": 0.2997
+}

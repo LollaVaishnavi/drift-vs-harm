@@ -1,0 +1,9 @@
+{
+  "psi_alarm_threshold": 0.2,
+  "war_auc_drop": -0.0291,
+  "war_equal_width_alarms": true,
+  "war_harmed": false,
+  "war_psi_equal_width": 0.2248,
+  "war_psi_quantile": 0.142,
+  "war_quantile_alarms": false
+}

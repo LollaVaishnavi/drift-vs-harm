@@ -1,0 +1,10 @@
+{
+  "covariate_harm_pct": 0.0,
+  "covariate_psi_alarm_pct": 100.0,
+  "covariate_scenarios": 10,
+  "drift_precision_pct": 50.0,
+  "harm_prevalence_pct": 53.49,
+  "null_ks_alarm_pct": 10.0,
+  "null_ks_bonferroni_pct": 0.0,
+  "null_psi_alarm_pct": 0.0
+}
