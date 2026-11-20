@@ -1,0 +1,214 @@
+{
+  "anchors": {
+    "concept_harmed": [
+      "0 of {}",
+      "{} concept-drift scenarios",
+      "one in {}"
+    ],
+    "concept_js_recall_pct": [
+      "JS on {:.0f}",
+      "{:.0f}% for JS"
+    ],
+    "concept_psi_recall_pct": [
+      "recall of {:.0f}%",
+      "fires on {:.0f} of",
+      "{:.0f}% recall"
+    ],
+    "covariate_psi_alarm_pct": [
+      "{:.0f}% of covariate",
+      "on {:.0f}% of the covariate"
+    ],
+    "covariate_scenarios": [
+      "{} covariate",
+      "all {} covariate"
+    ],
+    "coverage_line_pct": [
+      "{:.0f}% line coverage",
+      "{:.0f}% coverage"
+    ],
+    "drift_precision_pct": [
+      "precision of {:.0f}%",
+      "right {:.0f}% of",
+      "{:.0f}% of the time"
+    ],
+    "harm_prevalence_pct": [
+      "prevalence of {:.0f}%",
+      "{:.0f}% of the suite"
+    ],
+    "harmed_scenarios": [
+      "{} harmed scenarios",
+      "of {} harmed"
+    ],
+    "min_silent_auc_drop": [
+      "{:.2f} to",
+      "from {:.2f}"
+    ],
+    "null_ks_alarm_pct": [
+      "KS on {:.0f}%",
+      "{:.0f}% of null windows"
+    ],
+    "null_psi_alarm_pct": [
+      "{:.0f}% of null",
+      "null windows {:.0f}%"
+    ],
+    "psi_alarm_threshold": [
+      "threshold of {}",
+      "{} alarm level",
+      "above {}"
+    ],
+    "scenarios_total": [
+      "{} labelled scenarios",
+      "{} scenarios"
+    ],
+    "silent_harm_count": [
+      "{} of the 23",
+      "{} of 23"
+    ],
+    "silent_harm_share_pct": [
+      "{:.0f}% of realised harm",
+      "nearly {:.0f}%"
+    ],
+    "spearman_across_mix": [
+      "Spearman of {:.2f}",
+      "correlation of {:.2f}"
+    ],
+    "tests_total": [
+      "{} tests"
+    ],
+    "war_psi_equal_width": [
+      "{:.2f} under equal-width",
+      "equal-width reads {:.2f}"
+    ],
+    "war_psi_quantile": [
+      "{:.2f} under quantile",
+      "quantile reads {:.2f}"
+    ],
+    "worst_silent_auc_drop": [
+      "AUC falls {:.2f}",
+      "falls by {:.2f}",
+      "up to {:.2f}"
+    ]
+  },
+  "checked_documents": [
+    "README.md",
+    "docs/adr/ADR-001-synthetic-generator-over-real-data.md",
+    "docs/adr/ADR-002-watch-many-signals-generously.md",
+    "docs/adr/ADR-003-harm-kept-robust-not-the-subject.md",
+    "docs/adr/ADR-004-alarm-as-a-classifier-of-harm.md",
+    "docs/adr/ADR-005-freeze-quantile-bin-edges.md"
+  ],
+  "metrics": {
+    "concept_harmed": 15,
+    "concept_js_recall_pct": 0.0,
+    "concept_psi_recall_pct": 0.0,
+    "covariate_psi_alarm_pct": 100.0,
+    "covariate_scenarios": 10,
+    "coverage_line_pct": 100.0,
+    "drift_precision_pct": 50.0,
+    "harm_prevalence_pct": 53.49,
+    "harmed_scenarios": 23,
+    "min_silent_auc_drop": 0.0769,
+    "null_ks_alarm_pct": 10.0,
+    "null_psi_alarm_pct": 0.0,
+    "psi_alarm_threshold": 0.2,
+    "scenarios_total": 43,
+    "silent_harm_count": 16,
+    "silent_harm_share_pct": 69.57,
+    "spearman_across_mix": -0.151,
+    "tests_total": 99,
+    "war_psi_equal_width": 0.2248,
+    "war_psi_quantile": 0.142,
+    "worst_silent_auc_drop": 0.2997
+  },
+  "note": "every value here is produced by running the suite, the experiments and the tests",
+  "rendered_anchors": {
+    "concept_harmed": [
+      "0 of 15",
+      "15 concept-drift scenarios",
+      "one in 15"
+    ],
+    "concept_js_recall_pct": [
+      "JS on 0",
+      "0% for JS"
+    ],
+    "concept_psi_recall_pct": [
+      "recall of 0%",
+      "fires on 0 of",
+      "0% recall"
+    ],
+    "covariate_psi_alarm_pct": [
+      "100% of covariate",
+      "on 100% of the covariate"
+    ],
+    "covariate_scenarios": [
+      "10 covariate",
+      "all 10 covariate"
+    ],
+    "coverage_line_pct": [
+      "100% line coverage",
+      "100% coverage"
+    ],
+    "drift_precision_pct": [
+      "precision of 50%",
+      "right 50% of",
+      "50% of the time"
+    ],
+    "harm_prevalence_pct": [
+      "prevalence of 53%",
+      "53% of the suite"
+    ],
+    "harmed_scenarios": [
+      "23 harmed scenarios",
+      "of 23 harmed"
+    ],
+    "min_silent_auc_drop": [
+      "0.08 to",
+      "from 0.08"
+    ],
+    "null_ks_alarm_pct": [
+      "KS on 10%",
+      "10% of null windows"
+    ],
+    "null_psi_alarm_pct": [
+      "0% of null",
+      "null windows 0%"
+    ],
+    "psi_alarm_threshold": [
+      "threshold of 0.2",
+      "0.2 alarm level",
+      "above 0.2"
+    ],
+    "scenarios_total": [
+      "43 labelled scenarios",
+      "43 scenarios"
+    ],
+    "silent_harm_count": [
+      "16 of the 23",
+      "16 of 23"
+    ],
+    "silent_harm_share_pct": [
+      "70% of realised harm",
+      "nearly 70%"
+    ],
+    "spearman_across_mix": [
+      "Spearman of -0.15",
+      "correlation of -0.15"
+    ],
+    "tests_total": [
+      "99 tests"
+    ],
+    "war_psi_equal_width": [
+      "0.22 under equal-width",
+      "equal-width reads 0.22"
+    ],
+    "war_psi_quantile": [
+      "0.14 under quantile",
+      "quantile reads 0.14"
+    ],
+    "worst_silent_auc_drop": [
+      "AUC falls 0.30",
+      "falls by 0.30",
+      "up to 0.30"
+    ]
+  }
+}
