@@ -1,0 +1,6 @@
+{
+  "source": "README.md ```mermaid-source fence",
+  "output": "docs/diagrams/architecture.svg",
+  "background": "#f6f8fa",
+  "html_labels": false
+}

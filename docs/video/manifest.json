@@ -1,0 +1,32 @@
+{
+  "segments": [
+    {
+      "command": "driftharm audit --family null --quiet",
+      "exit_code": 0,
+      "duration_s": 1.28
+    },
+    {
+      "command": "driftharm audit --family concept --quiet",
+      "exit_code": 10,
+      "duration_s": 1.419
+    },
+    {
+      "command": "driftharm audit --family covariate --quiet",
+      "exit_code": 0,
+      "duration_s": 1.278
+    },
+    {
+      "command": "driftharm audit --quiet",
+      "exit_code": 10,
+      "duration_s": 2.134
+    },
+    {
+      "command": "python tools/check_numbers.py",
+      "exit_code": 0,
+      "duration_s": 0.026
+    }
+  ],
+  "gif": "docs/video/demo.gif",
+  "mp4": "docs/video/demo.mp4",
+  "note": "every line is captured stdout from a command that ran; pacing is measured"
+}
